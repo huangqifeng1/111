@@ -1,0 +1,316 @@
+#include "stdio.h"
+#include "math.h"
+#include "stdlib.h" 
+int num,lim,reg,par,dec;//题目的数量，最大值，运算符号
+void questionnum()
+{
+	int n;
+	printf("please input the number of questions:");
+	scanf("%d",&n);
+	num=n;
+	printf("\n\t输入有效，请继续进行其他设置或生成题目\n");
+}
+void questionmax()
+{
+	int max;
+	printf("please input the maximum of questions:");
+	scanf("%d",&max);
+	lim=max;
+	printf("\n\t输入有效，请继续进行其他设置或生成题目\n");
+}
+void questionreg()
+{
+	int x;
+	printf("please input the regulation of questions:\n1、加法 2、减法 3、乘法 4、除法\n");
+	scanf("%d",&x);
+	if(x<1||x>4)
+	{
+		printf("\n\t输入有误，请重新输入\n");
+		return questionreg();
+	}
+	else reg=x;
+	printf("\n\t输入有效，请继续进行其他设置或生成题目\n");
+}
+void parenthesis()
+{
+	printf("请输入1或者0来选择是否有小括号\n");
+	scanf("%d",&par);
+}
+void decimal()
+{
+	printf("请输入1或者0来选择是否有小数\n");
+	scanf("%d",&dec);
+}
+void store()
+{
+	FILE *fp;
+    if ((fp=fopen( "data.dat" , "w" ))==NULL)
+    {
+        printf("File cannot open!");
+        exit(0);
+    }
+	for(int i=1;i<=num;i++)
+{
+	int a=rand()%lim;
+	int b=rand()%lim;
+	int c=rand()%lim;
+	int d=rand()%100;
+	int e=rand()%100;
+	int f=rand()%100;
+	if(dec==0)
+	{
+	if(par==0)
+	{
+	switch (reg)
+	{
+	case 1: {
+				fprintf(fp,"%d+%d+%d=\t",a,b,c);
+				break;
+			}
+	case 2: {
+				fprintf(fp,"%d-%d-%d=\t",a,b,c);
+				break;
+			}
+	case 3: {
+				fprintf(fp,"%d*%d*%d=\t",a,b,c);
+				break;
+			}
+	case 4: {
+				fprintf(fp,"%d/%d/%d=\t",a,b,c);
+				break;
+			}
+	default:{"输出有误！";}
+	}
+	}
+	else 
+	switch (reg)
+	{
+	case 1: {
+				fprintf(fp,"(%d+%d)+%d=\t",a,b,c);
+				break;
+			}
+	case 2: {
+				fprintf(fp,"(%d-%d)-%d=\t",a,b,c);
+				break;
+			}
+	case 3: {
+				fprintf(fp,"(%d*%d)*%d=\t",a,b,c);
+				break;
+			}
+	case 4: {
+				fprintf(fp,"(%d/%d)/%d=\t",a,b,c);
+				break;
+			}
+	default:{"输出有误！";}
+	}
+	}
+	else
+	{
+		if(par==0)
+	{
+	switch (reg)
+	{
+	case 1: {
+				fprintf(fp,"%d.%d+%d.%d+%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	case 2: {
+				fprintf(fp,"%d.%d-%d.%d-%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	case 3: {
+				fprintf(fp,"%d.%d*%d.%d*%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	case 4: {
+				fprintf(fp,"%d.%d/%d.%d/%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	default:{"输出有误！";}
+	}
+	}
+	else 
+	switch (reg)
+	{
+	case 1: {
+				fprintf(fp,"(%d.%d+%d.%d)+%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	case 2: {
+				fprintf(fp,"(%d.%d-%d.%d)-%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	case 3: {
+				fprintf(fp,"(%d.%d*%d.%d)*%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	case 4: {
+				fprintf(fp,"(%d.%d/%d.%d)/%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	default:{"输出有误！";}
+	}
+	}
+	if(i%5==0&&i>=5) printf("\n");
+	}
+	printf("题目保存成功\n");
+}
+void print()
+{
+	for(int i=1;i<=num;i++)
+{
+	int a=rand()%lim;
+	int b=rand()%lim;
+	int c=rand()%lim;
+	int d=rand()%100;
+	int e=rand()%100;
+	int f=rand()%100;
+	if(dec==0)
+	{
+	if(par==0)
+	{
+	switch (reg)
+	{
+	case 1: {
+				printf("%d+%d+%d=\t",a,b,c);
+				break;
+			}
+	case 2: {
+				printf("%d-%d-%d=\t",a,b,c);
+				break;
+			}
+	case 3: {
+				printf("%d*%d*%d=\t",a,b,c);
+				break;
+			}
+	case 4: {
+				printf("%d/%d/%d=\t",a,b,c);
+				break;
+			}
+	default:{"输出有误！";}
+	}
+	}
+	else 
+	switch (reg)
+	{
+	case 1: {
+				printf("(%d+%d)+%d=\t",a,b,c);
+				break;
+			}
+	case 2: {
+				printf("(%d-%d)-%d=\t",a,b,c);
+				break;
+			}
+	case 3: {
+				printf("(%d*%d)*%d=\t",a,b,c);
+				break;
+			}
+	case 4: {
+				printf("(%d/%d)/%d=\t",a,b,c);
+				break;
+			}
+	default:{"输出有误！";}
+	}
+	}
+	else
+	{
+		if(par==0)
+	{
+	switch (reg)
+	{
+	case 1: {
+				printf("%d.%d+%d.%d+%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	case 2: {
+				printf("%d.%d-%d.%d-%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	case 3: {
+				printf("%d.%d*%d.%d*%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	case 4: {
+				printf("%d.%d/%d.%d/%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	default:{"输出有误！";}
+	}
+	}
+	else 
+	switch (reg)
+	{
+	case 1: {
+				printf("(%d.%d+%d.%d)+%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	case 2: {
+				printf("(%d.%d-%d.%d)-%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	case 3: {
+				printf("(%d.%d*%d.%d)*%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	case 4: {
+				printf("(%d.%d/%d.%d)/%d.%d=\t",a,d,b,e,c,f);
+				break;
+			}
+	default:{"输出有误！";}
+	}
+	}
+	if(i%5==0&&i>=5) printf("\n");
+	}
+}
+void Menu()
+{
+printf("\n\n\n\n\n");
+	printf("\t提示：请进行各项设置后再生成题目\n");
+	printf("\t|----------欢迎进入---------|\n");
+	printf("\t|      1、设置题目数量      |\n");
+	printf("\t|      2、设置最大限度      |\n");
+	printf("\t|      3、选择运算符号      |\n");
+	printf("\t|      4、是否有小括号      |\n");
+	printf("\t|      5、是否包含小数      |\n");
+	printf("\t|      6、把题目存进文件    |\n");
+	printf("\t|      7、生成题目          |\n");
+	printf("\t|---------------------------|\n");
+	printf("\n");
+	printf("\t\t请选择(0-7):");
+}
+
+int main()
+{
+	int s;
+	while (true)
+	{
+		Menu();
+		scanf("%d",&s);
+		switch (s)
+		{
+		case 1:
+			questionnum();
+			break;
+		case 2:
+			questionmax();
+			break;
+		case 3:
+			questionreg();
+			break;
+		case 4:
+			parenthesis();
+			break;
+		case 5:
+			decimal();
+			break;
+		case 6:
+			store();
+			break;
+		case 7:
+			print();
+			break;
+		case 0:
+			return 0;
+			break;
+		default:
+			break;}}}
